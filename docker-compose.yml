@@ -1,0 +1,38 @@
+version:  '3'
+services:
+  mysql_5_6:
+    container_name: mysql_5_6
+    ports:
+      - "3806:3306"
+    image: mysql:5.6
+    environment:
+      - "MYSQL_ROOT_PASSWORD=123456"
+    volumes:
+      - "$PWD/mysql_5-6:/var/lib/mysql"
+    networks:
+      - net
+  mysql_5_7:
+    container_name: mysql_5_7
+    ports:
+      - "3809:3306"
+    image: mysql:5.7
+    environment:
+      - "MYSQL_ROOT_PASSWORD=123456"
+    volumes:
+      - "$PWD/mysql_5-7:/var/lib/mysql"
+    networks:
+      - net
+  mongo:
+    image: mongo:latest
+    restart: always
+    ports:
+      - 27018:27017
+    volumes:
+      - "$PWD/mongo:/data/db"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    networks:
+      - net
+networks:
+  net:
