@@ -22,9 +22,19 @@ services:
       - "$PWD/mysql_5-7:/var/lib/mysql"
     networks:
       - net
+  mysql_8_4_0:
+    container_name: mysql_8_4_0
+    ports:
+      - "3809:3306"
+    image: mysql:8.4.0
+    environment:
+      - "MYSQL_ROOT_PASSWORD=123456"
+    volumes:
+      - "$PWD/mysql_8_4_0:/var/lib/mysql"
+    networks:
+      - net
   mongo:
     image: mongo:latest
-    restart: always
     ports:
       - 27018:27017
     volumes:
@@ -34,5 +44,20 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: root
     networks:
       - net
+
+  postgres:
+    container_name: postgres
+    ports:
+      - "5439:5432"
+    image: postgres:14.11
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=postgres
+    volumes:
+      - "$PWD/postgres:/var/lib/postgresql/data"
+    networks:
+      - net
+      
 networks:
   net:
