@@ -34,7 +34,7 @@ services:
     networks:
       - net
   mongo:
-    image: mongo:latest
+    image: mongo:6.0.1
     ports:
       - 27018:27017
     volumes:
