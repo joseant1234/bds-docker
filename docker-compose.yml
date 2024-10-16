@@ -69,5 +69,21 @@ services:
     networks:
       - net
 
+  rabbit_3:
+    container_name: rabbit_3
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    image: rabbitmq:3.13-management-alpine
+    environment:
+      - RABBITMQ_DEFAULT_USER=user
+      - RABBITMQ_DEFAULT_PASS=password
+
+    volumes:
+      - "$PWD/rabbit_3:/var/lib/rabbitmq"
+    networks:
+      - net
+
+
 networks:
   net:
